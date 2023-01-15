@@ -1,0 +1,12 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t pfejes/udemy-docker-test-frontend -f Dockerfile.dev .
+#script:
+#  - docker run pfejes/udemy-docker-test-frontend npm run test -- --coverage
+
+script:
+  - docker run -e CI=true pfejes/udemy-docker-test-frontend npm run test
+#language: generic

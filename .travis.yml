@@ -9,3 +9,15 @@ script:
   - docker run -e CI=true pfejes/udemy-docker-test-frontend npm run test
 
 language: generic
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-2"
+  app: "udemy-react"
+  env: "Udemyreact-env"
+  bucket_name: "elasticbeanstalk-eu-west-2-104184684628"
+  bucket_path: "udemy-react"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
